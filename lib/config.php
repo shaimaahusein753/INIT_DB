@@ -2,17 +2,17 @@
 
 $ini = @parse_ini_file(".env");
 
-if($ini && isset('mysql://b5094cb1c17552:e6694769@us-cdbr-east-06.cleardb.net/heroku_6a58510f6a72749?reconnect=true')){
+// if($ini && isset($ini["DB_URL"])){
     //load local .env file
-    $url = $ini["DB_URL"];
+    $url = 'mysql://b5094cb1c17552:e6694769@us-cdbr-east-06.cleardb.net/heroku_6a58510f6a72749?reconnect=true';
     $db_url = parse_url($url);
-}
-else{
-    //load from heroku env variables
-    $url = getenv("DB_URL");
-    $db_url = parse_url($url);
+// }
+// else{
+//     //load from heroku env variables
+//     $url = getenv("DB_URL");
+//     $db_url = parse_url($url);
     
-}
+// }
 //attempts to handle a failure where parse_url doesn't parse properly (usually happens when special characters are included)
 if (!$db_url || count($db_url) === 0) {
     $matches;
