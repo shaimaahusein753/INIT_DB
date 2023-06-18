@@ -2,7 +2,7 @@
 
 $ini = @parse_ini_file(".env");
 
-if($ini && isset($ini["DB_URL"])){
+if($ini && isset('mysql://b5094cb1c17552:e6694769@us-cdbr-east-06.cleardb.net/heroku_6a58510f6a72749?reconnect=true')){
     //load local .env file
     $url = $ini["DB_URL"];
     $db_url = parse_url($url);
