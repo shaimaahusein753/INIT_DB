@@ -68,10 +68,11 @@ if (isset($_POST["username"])) {
 
 
 ?>
+<div class="container-fluid">
 <h1>Assign Roles</h1>
 <form method="POST">
     <input class="form-control" type="search" name="username" placeholder="Username search" />
-    <input class="form-control" type="submit" value="Search" />
+    <input class="btn btn-primary" type="submit" value="Search" />
 </form>
 <form method="POST">
     <?php if (isset($username) && !empty($username)) : ?>
@@ -108,8 +109,9 @@ if (isset($_POST["username"])) {
             </tr>
         </tbody>
     </table>
-    <input class="form-control" type="submit" value="Toggle Roles" />
+    <input class="btn btn-primary" type="submit" value="Toggle Roles" />
 </form>
+</div>
 <?php
 //note we need to go up 1 more directory
 require_once(__DIR__ . "/../../../partials/flash.php");
