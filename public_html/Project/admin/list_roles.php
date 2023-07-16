@@ -46,8 +46,8 @@ try {
 ?>
 <h1>List Roles</h1>
 <form method="POST">
-    <input type="search" name="role" placeholder="Role Filter" value="<?php se($_POST, "role");?>" />
-    <input type="submit" value="Search" />
+    <input class="form-control" type="search" name="role" placeholder="Role Filter" value="<?php se($_POST, "role");?>" />
+    <input class="form-control" type="submit" value="Search" />
 </form>
 <table>
     <thead>
@@ -71,12 +71,12 @@ try {
                     <td><?php echo (se($role, "is_active", 0, false) ? "active" : "disabled"); ?></td>
                     <td>
                         <form method="POST">
-                            <input type="hidden" name="role_id" value="<?php se($role, 'id'); ?>" />
+                            <input class="form-control" type="hidden" name="role_id" value="<?php se($role, 'id'); ?>" />
                             <?php if (isset($search) && !empty($search)) : ?>
                                 <?php /* if this is part of a search, lets persist the search criteria so it reloads correctly*/ ?>
-                                <input type="hidden" name="role" value="<?php se($search, null); ?>" />
+                                <input class="form-control" type="hidden" name="role" value="<?php se($search, null); ?>" />
                             <?php endif; ?>
-                            <input type="submit" value="Toggle" />
+                            <input class="form-control" type="submit" value="Toggle" />
                         </form>
                     </td>
                 </tr>
