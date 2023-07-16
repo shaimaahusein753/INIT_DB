@@ -44,12 +44,13 @@ try {
 }
 
 ?>
+<div class="container-fluid">
 <h1>List Roles</h1>
 <form method="POST">
     <input class="form-control" type="search" name="role" placeholder="Role Filter" value="<?php se($_POST, "role");?>" />
-    <input class="form-control" type="submit" value="Search" />
+    <input class="btn btn-primary mt-3" type="submit" value="Search" />
 </form>
-<table>
+<table class="table">
     <thead>
         <th>ID</th>
         <th>Name</th>
@@ -76,7 +77,7 @@ try {
                                 <?php /* if this is part of a search, lets persist the search criteria so it reloads correctly*/ ?>
                                 <input class="form-control" type="hidden" name="role" value="<?php se($search, null); ?>" />
                             <?php endif; ?>
-                            <input class="form-control" type="submit" value="Toggle" />
+                            <input class="btn btn-primary" type="submit" value="Toggle" />
                         </form>
                     </td>
                 </tr>
@@ -84,6 +85,7 @@ try {
         <?php endif; ?>
     </tbody>
 </table>
+</div>
 <?php
 //note we need to go up 1 more directory
 require_once(__DIR__ . "/../../../partials/flash.php");
