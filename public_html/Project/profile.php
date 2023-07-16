@@ -82,6 +82,7 @@ if (isset($_POST["save"])) {
 $email = get_user_email();
 $username = get_username();
 ?>
+<div class="container-fluid">
 <form method="POST" onsubmit="return validate(this);">
     <div class="mb-3">
         <label for="email">Email</label>
@@ -105,9 +106,9 @@ $username = get_username();
         <label for="conp">Confirm Password</label>
         <input class="form-control" type="password" name="confirmPassword" id="conp" />
     </div>
-    <input class="form-control" type="submit" value="Update Profile" name="save" />
+    <input class="btn btn-primary" type="submit" value="Update Profile" name="save" />
 </form>
-
+</div>
 <script>
     function validate(form) {
         let pw = form.newPassword.value;

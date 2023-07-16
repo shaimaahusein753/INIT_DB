@@ -1,7 +1,9 @@
 <?php
 require(__DIR__."/../../partials/nav.php");
 ?>
+<div class="container-fluid">
 <h1>Home</h1>
+</div>
 <?php
 if(is_logged_in()){
     flash("Welcome, " . get_user_email());
