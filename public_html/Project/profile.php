@@ -8,31 +8,37 @@ if (!is_logged_in()) {
 if (isset($_POST["save"])) {
     $email = se($_POST, "email", null, false);
     $username = se($_POST, "username", null, false);
-
-    $params = [":email" => $email, ":username" => $username, ":id" => get_user_id()];
-    $db = getDB();
-    $stmt = $db->prepare("UPDATE Users set email = :email, username = :username where id = :id");
-    try {
-        $stmt->execute($params);
-        flash("Profile saved", "success");
-    } catch (Exception $e) {
-        users_check_duplicate($e->errorInfo);
+    if (!preg_match('/^[a-z0-9_-]{3,16}$/', $username)) {
+        flash("Username must only contain 3-30 characters a-z, 0-9, _, or -", "danger");
+        $hasError = true;
     }
-    //select fresh data from table
-    $stmt = $db->prepare("SELECT id, email, username from Users where id = :id LIMIT 1");
-    try {
-        $stmt->execute([":id" => get_user_id()]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($user) {
-            //$_SESSION["user"] = $user;
-            $_SESSION["user"]["email"] = $user["email"];
-            $_SESSION["user"]["username"] = $user["username"];
-        } else {
-            flash("User doesn't exist", "danger");
+    if(!$hasError){
+
+        $params = [":email" => $email, ":username" => $username, ":id" => get_user_id()];
+        $db = getDB();
+        $stmt = $db->prepare("UPDATE Users set email = :email, username = :username where id = :id");
+        try {
+            $stmt->execute($params);
+            flash("Profile saved", "success");
+        } catch (Exception $e) {
+            users_check_duplicate($e->errorInfo);
         }
-    } catch (Exception $e) {
-        flash("An unexpected error occurred, please try again", "danger");
-        //echo "<pre>" . var_export($e->errorInfo, true) . "</pre>";
+        //select fresh data from table
+        $stmt = $db->prepare("SELECT id, email, username from Users where id = :id LIMIT 1");
+        try {
+            $stmt->execute([":id" => get_user_id()]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($user) {
+                //$_SESSION["user"] = $user;
+                $_SESSION["user"]["email"] = $user["email"];
+                $_SESSION["user"]["username"] = $user["username"];
+            } else {
+                flash("User doesn't exist", "danger");
+            }
+        } catch (Exception $e) {
+            flash("An unexpected error occurred, please try again", "danger");
+            //echo "<pre>" . var_export($e->errorInfo, true) . "</pre>";
+        }
     }
 
 
@@ -82,10 +88,10 @@ $username = get_username();
     </div>
     <div class="mb-3">
         <label for="username">Username</label>
-        <input class="form-control" type="text" name="username" id="username" value="<?php se($username); ?>" />
+        <input class="form-control" type="text" required name="username" id="username" value="<?php se($username); ?>" />
     </div>
     <!-- DO NOT PRELOAD PASSWORD -->
-    <div>Password Reset</div>
+    <h3><div>Password Reset</div></h3>
     <div class="mb-3">
         <label for="cp">Current Password</label>
         <input class="form-control" type="password" name="currentPassword" id="cp" />
