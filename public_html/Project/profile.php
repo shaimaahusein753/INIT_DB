@@ -8,6 +8,7 @@ if (!is_logged_in()) {
 if (isset($_POST["save"])) {
     $email = se($_POST, "email", null, false);
     $username = se($_POST, "username", null, false);
+    $hasError = false;
     if (!preg_match('/^[a-z0-9_-]{3,16}$/', $username)) {
         flash("Username must only contain 3-30 characters a-z, 0-9, _, or -", "danger");
         $hasError = true;
