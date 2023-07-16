@@ -90,27 +90,27 @@ $username = get_username();
 <form method="POST" onsubmit="return validate(this);">
     <div class="mb-3">
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" value="<?php se($email); ?>" />
+        <input class="form-control" type="email" name="email" id="email" value="<?php se($email); ?>" />
     </div>
     <div class="mb-3">
         <label for="username">Username</label>
-        <input type="text" name="username" id="username" value="<?php se($username); ?>" />
+        <input class="form-control" type="text" name="username" id="username" value="<?php se($username); ?>" />
     </div>
     <!-- DO NOT PRELOAD PASSWORD -->
     <div>Password Reset</div>
     <div class="mb-3">
         <label for="cp">Current Password</label>
-        <input type="password" name="currentPassword" id="cp" />
+        <input class="form-control" type="password" name="currentPassword" id="cp" />
     </div>
     <div class="mb-3">
         <label for="np">New Password</label>
-        <input type="password" name="newPassword" id="np" />
+        <input class="form-control" type="password" name="newPassword" id="np" />
     </div>
     <div class="mb-3">
         <label for="conp">Confirm Password</label>
-        <input type="password" name="confirmPassword" id="conp" />
+        <input class="form-control" type="password" name="confirmPassword" id="conp" />
     </div>
-    <input type="submit" value="Update Profile" name="save" />
+    <input class="form-control" type="submit" value="Update Profile" name="save" />
 </form>
 
 <script>
