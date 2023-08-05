@@ -18,7 +18,7 @@ function flash (message = "", color = "info") {
 let flash_timeout = null;
 function clear_flashes () {
     let flash = document.getElementById("flash");
-    if (!flash_timeout && flash) {
+    if (!flash_timeout) {
         flash_timeout = setTimeout(() => {
             console.log("removing");
             if (flash.children.length > 0) {
