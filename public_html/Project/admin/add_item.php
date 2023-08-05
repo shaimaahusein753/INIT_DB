@@ -1,19 +1,19 @@
 <?php
 //note we need to go up 1 more directory
 require(__DIR__ . "/../../../partials/nav.php");
-$TABLE_NAME = "RM_Items";
+
 if (!has_role("Admin")) {
     flash("You don't have permission to view this page", "warning");
-    die(header("Location: $BASE_PATH/home.php"));
+    die(header("Location: $BASE_PATH" . "home.php"));
 }
 if (isset($_POST["submit"])) {
-    $id = save_data($TABLE_NAME, $_POST);
+    $id = save_data("BGD_Items", $_POST);
     if ($id > 0) {
         flash("Created Item with id $id", "success");
     }
 }
 //get the table definition
-$columns = get_columns($TABLE_NAME);
+$columns = get_columns("BGD_Items");
 //echo "<pre>" . var_export($columns, true) . "</pre>";
 $ignore = ["id", "modified", "created"];
 ?>
@@ -25,7 +25,7 @@ $ignore = ["id", "modified", "created"];
             <?php if (!in_array($column["Field"], $ignore)) : ?>
                 <div class="mb-4">
                     <label class="form-label" for="<?php se($column, "Field"); ?>"><?php se($column, "Field"); ?></label>
-                    <input class="form-control" id="<?php se($column, "Field"); ?>" type="<?php echo input_map(se($column, "Type", "", false)); ?>" name="<?php se($column, "Field"); ?>" />
+                    <input class="form-control" id="<?php se($column, "Field"); ?>" type="<?php echo inputMap(se($column, "Type", "", false)); ?>" name="<?php se($column, "Field"); ?>" />
                 </div>
             <?php endif; ?>
         <?php endforeach; ?>
@@ -35,3 +35,4 @@ $ignore = ["id", "modified", "created"];
 <?php
 //note we need to go up 1 more directory
 require_once(__DIR__ . "/../../../partials/footer.php");
+?>

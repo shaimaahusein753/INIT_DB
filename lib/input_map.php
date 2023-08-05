@@ -1,8 +1,9 @@
 <?php
 
-function input_map($fieldType)
+//snippet from my functions.php
+function inputMap($fieldType)
 {
-    if (str_contains($fieldType, "varchar")) { //needed since varchars have a size
+    if (str_contains($fieldType, "varchar")) {
         return "text";
     } else if ($fieldType === "text") {
         return "textarea";
@@ -11,3 +12,4 @@ function input_map($fieldType)
     }
     return "text"; //default
 }
+?>
