@@ -1,22 +1,33 @@
 <?php
-require(__DIR__."/../../partials/nav.php");
+require(__DIR__ . "/../../partials/nav.php");
 ?>
-<div class="container-fluid">
 <h1>Home</h1>
-</div>
 <?php
-if(is_logged_in()){
-    flash("Welcome, " . get_user_email());
-}
-else{
-    flash("You're not logged in");
-}
-/*if(isset($_SESSION["user"]) && isset($_SESSION["user"]["email"])){
- echo "Welcome, " . $_SESSION["user"]["email"]; 
-}
-else{
-  echo "You're not logged in";
-}*/
 
-require(__DIR__."/../../partials/flash.php");
+/*if (is_logged_in(true)) {
+    //echo "Welcome home, " . get_username();
+    //comment this out if you don't want to see the session variables
+    error_log("Session data: " . var_export($_SESSION, true));
+}*/
+?>
+
+<?php
+//this is day which is the default
+require(__DIR__ . "/../../partials/scores_table.php");
+?>
+<?php
+$duration = "week";
+require(__DIR__ . "/../../partials/scores_table.php");
+?>
+<?php
+$duration = "month";
+require(__DIR__ . "/../../partials/scores_table.php");
+?>
+<?php
+$duration = "lifetime";
+require(__DIR__ . "/../../partials/scores_table.php");
+?>
+
+<?php
+require(__DIR__ . "/../../partials/footer.php");
 ?>
